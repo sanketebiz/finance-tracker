@@ -110,59 +110,61 @@ export const Table = ({ data }) => {
   }, [tableMeta.perPage]);
 
   return <>
-    {data.length > 0 &&
-      <table className='records'>
-        <thead>
-          {Object.keys(columnTypes).map(column =>
-            <th key={column} onClick={() => onSort(column, columnTypes[column])}>
-              <div className='column'>
-                <span>
-                  {getFormattedName(column)}
-                </span>
-                {tableMeta.sort.column === column && <img className={`${tableMeta.sort.order === 'ASC' && 'flipped'}`} src='/icons/sort.png' width={20} alt='sort-icon' />}
-              </div>
-            </th>
-          )}
-          <th>Action</th>
-        </thead>
-        <tbody>
-          {currentPageData.map(row => <tr>
-            <td>{row['id']}</td>
-            <td>{row['date']}</td>
-            <td>{row['month_year']}</td>
-            <td>{row['type']}</td>
-            <td>{row['from_account']}</td>
-            <td>{row['to_account']}</td>
-            <td>{formatCurrency(row['amount'])}</td>
-            <td><img src={row['receipt']} alt='receipt' /></td>
-            <td>{row['notes']}</td>
-            <td>
-              <div>
-                <Link to={`${row.id}`}>View</Link>
-              </div>
-              <div>
-                <Link to={`edit/${row.id}`}>Edit</Link>
-              </div>
-            </td>
-          </tr>)}
-        </tbody>
-      </table>
+    {data.length > 0 ?
+      <>
+        <table className='records'>
+          <thead>
+            {Object.keys(columnTypes).map(column =>
+              <th key={column} onClick={() => onSort(column, columnTypes[column])}>
+                <div className='column'>
+                  <span>
+                    {getFormattedName(column)}
+                  </span>
+                  {tableMeta.sort.column === column && <img className={`${tableMeta.sort.order === 'ASC' && 'flipped'}`} src='/icons/sort.png' width={20} alt='sort-icon' />}
+                </div>
+              </th>
+            )}
+            <th>Action</th>
+          </thead>
+          <tbody>
+            {currentPageData.map(row => <tr>
+              <td>{row['id']}</td>
+              <td>{row['date']}</td>
+              <td>{row['month_year']}</td>
+              <td>{row['type']}</td>
+              <td>{row['from_account']}</td>
+              <td>{row['to_account']}</td>
+              <td>{formatCurrency(row['amount'])}</td>
+              <td><img src={row['receipt']} alt='receipt' /></td>
+              <td>{row['notes']}</td>
+              <td>
+                <div>
+                  <Link to={`${row.id}`}>View</Link>
+                </div>
+                <div>
+                  <Link to={`edit/${row.id}`}>Edit</Link>
+                </div>
+              </td>
+            </tr>)}
+          </tbody>
+        </table>
+        <div class="pagination-wrapper flex text-center justify-between">
+          <div className='per-page flex'>
+            <label>Per page</label>
+            <select className='mt-0' onChange={(e) => setTableMeta(old => ({ ...old, perPage: e.target.value }))} defaultValue={tableMeta.perPage}>
+              {[2, 5, 10, 15, 20].map((perPageCount) => <option key={perPageCount}>{perPageCount}</option>)}
+            </select>
+          </div>
+          <div class="pagination">
+            {Array(totalPages)
+              .fill()
+              .map((item, index) =>
+                <span className={`${index + 1 === currentPage ? 'active' : ''}`} onClick={() => onPageChange(index + 1)}>{index + 1}</span>
+              )
+            }
+          </div>
+        </div>
+      </> : <div className='flex justify-center'><h4>No Data Found</h4></div>
     }
-    <div class="pagination-wrapper flex text-center justify-between">
-      <div className='per-page flex'>
-        <label>Per page</label>
-        <select className='mt-0' onChange={(e) => setTableMeta(old => ({ ...old, perPage: e.target.value }))} defaultValue={tableMeta.perPage}>
-          {[2, 5, 10, 15, 20].map((perPageCount) => <option key={perPageCount}>{perPageCount}</option>)}
-        </select>
-      </div>
-      <div class="pagination">
-        {Array(totalPages)
-          .fill()
-          .map((item, index) =>
-            <span className={`${index + 1 === currentPage ? 'active' : ''}`} onClick={() => onPageChange(index + 1)}>{index + 1}</span>
-          )
-        }
-      </div>
-    </div>
   </>;
 }

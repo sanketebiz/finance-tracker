@@ -39,7 +39,7 @@ export const Transactions = () => {
         Object.keys(grouped).map((groupByColumn) =>
           <div key={groupByColumn}>
             <h3>{groupByColumn}</h3>
-            <Table key={groupByColumn} data={grouped[groupByColumn]} />
+            <Table data={grouped[groupByColumn]} />
           </div>
         )
         : <Table data={originalData} />}
