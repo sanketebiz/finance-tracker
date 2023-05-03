@@ -1,0 +1,147 @@
+.transction-form-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.transction-form {
+    width: 300px;
+}
+
+/* table design start */
+
+.records {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.records td img {
+    height: 70px;
+}
+
+.records td,
+.records thead th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.records tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.records tr:hover {
+    background-color: #ddd;
+}
+
+.records th {
+    cursor: pointer;
+    min-width: 140px;
+    user-select: none;
+}
+
+.records th div {
+    display: flex;
+    justify-content: left;
+}
+
+.records th div span {
+    margin-top: 2px;
+}
+
+.records th div img {
+    margin-left: 5px;
+}
+
+.records th div img.flipped {
+    transform: scaleY(-1);
+}
+
+.records th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.pagination-wrapper {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination span {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination span.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination span:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* table design end */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.field-errors {
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: red;
+}
+
+.media-preview img {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.back-link {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.group-wrapper {
+    width: 200px;
+}
+
+.per-page label {
+    width: 200px;
+}
